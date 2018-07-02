@@ -16,23 +16,3 @@ Import-Package: org.joda.time;version="2.0"
 Export-Package: org.joda.time.contrib.hibernate;version=1.4
 Bundle-License: Apache 2.0
 Bundle-DocURL: http://www.joda.org/joda-time-hibernate/
-<build>
-    ...
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jar-plugin</artifactId>
-        <version>2.1</version>
-        <configuration>
-          <archive>
-            <manifest>
-              <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-            </manifest>
-            <manifestEntries>
-              <Implementation-Build>$\{buildNumber}</Implementation-Build>
-            </manifestEntries>
-          </archive>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
