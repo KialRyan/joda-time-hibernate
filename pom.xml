@@ -82,6 +82,29 @@
     <!-- define build -->
     <plugins>
       <plugin>
+      <groupId>org.codehaus.mojo</groupId>
+      <artifactId>buildnumber-maven-plugin</artifactId>
+      <version>1.4</version>
+      <executions>
+        <execution>
+          <phase>validate</phase>
+          <goals>
+            <goal>create</goal>
+          </goals>
+        </execution>
+      </executions>
+      <configuration>
+        <doCheck>true</doCheck>
+        <doUpdate>true</doUpdate>
+      	<shortRevisionLength>5</shortRevisionLength>
+	<format>SCM Version {0}. Timestamp {1,date,yyyy-MM-dd HH:mm:ss}</format>
+	<items>
+    <item>scmVersion</item>
+    <item>timestamp</item>
+</items>
+       </configuration>
+    </plugin> 
+      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
         <configuration>
@@ -91,7 +114,11 @@
               <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
               <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
             </manifest>
-          </archive>
+            <manifestEntries>
+	    <SCM>${buildNumber}</SCM>
+	    <Timestamp>${timestamp}</Timestamp>
+	    </manifestEntries>
+	  </archive>
         </configuration>
       </plugin>
       <plugin>
